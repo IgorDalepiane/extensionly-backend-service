@@ -12,7 +12,7 @@ import { UserService } from './user.service';
         options: {
           client: {
             clientId: 'auth',
-            brokers: ['localhost:9092'],
+            brokers: ['193.123.106.255:9092'],
           },
           consumer: {
             groupId: 'auth-consumer',
@@ -27,7 +27,7 @@ import { UserService } from './user.service';
         options: {
           client: {
             clientId: 'user',
-            brokers: ['localhost:9092'],
+            brokers: ['193.123.106.255:9092'],
           },
           consumer: {
             groupId: 'user-consumer',
