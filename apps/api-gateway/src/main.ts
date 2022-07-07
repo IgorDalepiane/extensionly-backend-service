@@ -15,5 +15,6 @@ async function bootstrap() {
     credentials: true,
   });
   await app.listen(3000);
+  module.exports = app;
 }
 bootstrap();

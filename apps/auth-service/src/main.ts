@@ -18,5 +18,6 @@ async function bootstrap() {
     },
   );
   app.listen();
+  module.exports = app;
 }
 bootstrap();
