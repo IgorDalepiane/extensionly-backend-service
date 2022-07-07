@@ -2,6 +2,7 @@ import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { ClientKafka } from '@nestjs/microservices';
 import { firstValueFrom } from 'rxjs/internal/firstValueFrom';
 import { LoginCredentialsDto, LoginUserResponseDto } from './dto';
+import { TokenCreationResponseDto } from './dto/token-creation-response.dto';
 
 @Injectable()
 export class UserService {
@@ -32,19 +33,19 @@ export class UserService {
         HttpStatus.UNAUTHORIZED,
       );
     }
-    return getUserResponse;
-    // const createTokenResponse: IServiveTokenCreateResponse =
-    //   await firstValueFrom(
-    //     this.tokenServiceClient.send('token_create', {
-    //       userId: getUserResponse.user.id,
-    //     }),
-    //   );
-    // return {
-    //   message: createTokenResponse.message,
-    //   data: {
-    //     token: createTokenResponse.token,
-    //   },
-    //   errors: null,
-    // };
+
+    const createTokenResponse: TokenCreationResponseDto = await firstValueFrom(
+      this.authClient.send('create_token', {
+        userId: getUserResponse.user.id,
+      }),
+    );
+
+    return {
+      message: createTokenResponse.message,
+      data: {
+        token: createTokenResponse.token,
+      },
+      errors: null,
+    };
   }
 }

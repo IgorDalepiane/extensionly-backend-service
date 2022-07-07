@@ -34,6 +34,7 @@ export class UserController implements OnModuleInit {
 
   async onModuleInit() {
     this.authClient.subscribeToResponseOf('validate_user');
+    this.authClient.subscribeToResponseOf('create_token');
     this.userClient.subscribeToResponseOf('user_search_by_credentials');
     await this.authClient.connect();
     await this.userClient.connect();
