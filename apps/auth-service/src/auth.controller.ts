@@ -6,9 +6,9 @@ import { AuthService } from './auth.service';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @MessagePattern('register')
-  register(data: any) {
-    return this.authService.register(data.value);
+  @MessagePattern('create_token')
+  async createToken(data: any) {
+    return this.authService.createToken(data.value);
   }
 
   @MessagePattern('authenticate')
