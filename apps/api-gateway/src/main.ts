@@ -14,7 +14,7 @@ async function bootstrap() {
     methods: 'GET, PUT, POST, DELETE, PATCH',
     credentials: true,
   });
-  await app.listen(3000);
-  module.exports = app;
+  return app;
+  // await app.listen(3000);
 }
-bootstrap();
+module.exports = bootstrap();
